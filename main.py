@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 import json
@@ -145,6 +145,7 @@ def contact():
                           recipients = [params['gmail-user']],
                           body = message + "\n" + phone
                           )
+        flash(f"Thanks {name} for submitting your details, we will get back to you soon.", "success")
     return render_template('contact.html', params=params)
 
 # Dashboard page render
